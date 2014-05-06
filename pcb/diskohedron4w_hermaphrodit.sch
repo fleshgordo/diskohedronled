@@ -14740,7 +14740,7 @@ at 30/07/2012 17:45:58</description>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="U$4" library="diskohedron" deviceset="8PIN-ZH" device=""/>
-<part name="IC1" library="linear" deviceset="LM2596S" device=""/>
+<part name="IC1" library="linear" deviceset="LM2596S" device="" value="LM2596"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="L1" library="inductors" deviceset="DR127" device="" value="30uH"/>
 <part name="D1" library="eagle-ltspice" deviceset="DIODE_E-" device="SMC" value="1N5824 3A"/>
@@ -14748,17 +14748,17 @@ at 30/07/2012 17:45:58</description>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="X1" library="con-molex" deviceset="87758-1216" device=""/>
 <part name="X2" library="con-molex" deviceset="87758-1216" device=""/>
-<part name="JP1" library="SparkFun-Connectors" deviceset="M05" device="PTH"/>
-<part name="D2" library="adafruit" deviceset="DIODE" device="SMA"/>
+<part name="JP1" library="SparkFun-Connectors" deviceset="M05" device="PTH" value="EXTBRD"/>
+<part name="D2" library="adafruit" deviceset="DIODE" device="SMA" value="1n4001"/>
 <part name="U$5" library="diskohedron" deviceset="HERMAPHRODITMINI6PIN" device=""/>
 <part name="U$6" library="diskohedron" deviceset="HERMAPHRODIT2PIN" device=""/>
 <part name="U$7" library="diskohedron" deviceset="HERMAPHRODIT2PIN" device=""/>
 <part name="U$8" library="diskohedron" deviceset="HERMAPHRODITMINI6PIN" device=""/>
 <part name="U$11" library="diskohedron" deviceset="HERMAPHRODITMINI6PIN" device=""/>
 <part name="U$12" library="diskohedron" deviceset="HERMAPHRODIT2PIN" device=""/>
-<part name="C3" library="rcl" deviceset="C-EU" device="C0805"/>
+<part name="C3" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
-<part name="C4" library="rcl" deviceset="C-EU" device="C0805"/>
+<part name="C4" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
 <part name="FRAME1" library="frames" deviceset="A3L-LOC" device=""/>
