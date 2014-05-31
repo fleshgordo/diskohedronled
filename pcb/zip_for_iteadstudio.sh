@@ -13,5 +13,5 @@ echo "done. Rename the $filenoext.zip to [ORDERNUMBER][DIMENSION][COLOUR][THICKN
 echo "for example: 422214_10by10_Green_1.6mm_ENIG_10pcs.zip"
 echo "enter ordernumber: "
 read ORDERNUMBER
-mv $filenoext.zip $ORDERNUMBER.zip
+mv $filenoext.zip test.zip
 #mv $filenoext.zip $ORDERNUMBER_10by10_Green_1.6mm_ENIG_10pcs.zip
