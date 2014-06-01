@@ -15335,9 +15335,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="4R" library="diskohedron" deviceset="SN65LVDST32" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
-<part name="C1" library="rcl" deviceset="CPOL-EU" device="153CLV-1010" value="220uF"/>
+<part name="C1" library="rcl" deviceset="CPOL-EU" device="175TMP-0808" value="220uF"/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
-<part name="C2" library="rcl" deviceset="CPOL-EU" device="153CLV-0810" value="220uF"/>
+<part name="C2" library="rcl" deviceset="CPOL-EU" device="175TMP-0808" value="220uF"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="VDD1" library="supply1" deviceset="VDD" device=""/>
 <part name="VDD2" library="supply1" deviceset="VDD" device=""/>
