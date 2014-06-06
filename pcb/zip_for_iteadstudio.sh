@@ -1,5 +1,8 @@
 #!/bin/sh
 
+rm *.zip
+ORDERDETAILS="_10by10_Green_1.6mm_ENIG_35pcs.zip"
+
 [ $# -eq 0 ] && { echo "Usage: $0 projectfile.brd"; exit 1; }
 
 echo "creating zip file ... yeah!!!"
@@ -12,6 +15,7 @@ zip $filenoext.zip $filenoext.GTL $filenoext.GBL $filenoext.GTS $filenoext.GBS $
 echo "done. Rename the $filenoext.zip to [ORDERNUMBER][DIMENSION][COLOUR][THICKNESS][SURFACE FINISH HASL][AMOUNT].zip"
 echo "for example: 422214_10by10_Green_1.6mm_ENIG_10pcs.zip"
 echo "enter ordernumber: "
+
 read ORDERNUMBER
-mv $filenoext.zip test.zip
-#mv $filenoext.zip $ORDERNUMBER_10by10_Green_1.6mm_ENIG_10pcs.zip
+newfile=$ORDERNUMBER$ORDERDETAILS
+mv $filenoext.zip $newfile 
