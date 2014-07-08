@@ -9,17 +9,17 @@
 <grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.635" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="no" active="yes"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="no" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
@@ -5338,47 +5338,61 @@ design rules under a new name.</description>
 </element>
 <element name="OUT-R1" library="diskohedron" package="HERMAPHRODITMINI6PIN" value="HERMAPHRODITMINI6PIN" x="22.56889375" y="4.132359375" rot="MR180"/>
 <element name="U$1" library="diskohedron" package="HERMAPHRODIT2PIN" value="HERMAPHRODIT2PIN" x="14.661690625" y="9.449059375" rot="MR180"/>
-<element name="TP25" library="testpad" package="TP12SQ" value="TPTP12SQ" x="41.960375" y="8.346509375" rot="MR90">
-<attribute name="TP_SIGNAL_NAME" value="" x="41.960375" y="8.029009375" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="TP25" library="testpad" package="TP12SQ" value="TPTP12SQ" x="41.960375" y="8.346509375" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="39.420375" y="8.346509375" size="1" layer="38" rot="MR90"/>
+<attribute name="VALUE" x="41.325375" y="7.838509375" size="0.0254" layer="28" rot="MR90"/>
 </element>
-<element name="TP26" library="testpad" package="TP12SQ" value="TPTP12SQ" x="40.055375" y="8.346509375" rot="MR90">
-<attribute name="TP_SIGNAL_NAME" value="" x="40.055375" y="7.711509375" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="TP26" library="testpad" package="TP12SQ" value="TPTP12SQ" x="40.055375" y="8.346509375" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="37.515375" y="8.346509375" size="1" layer="38" rot="MR90"/>
+<attribute name="VALUE" x="39.420375" y="7.838509375" size="0.0254" layer="28" rot="MR90"/>
 </element>
-<element name="TP27" library="testpad" package="TP12SQ" value="TPTP12SQ" x="38.150375" y="8.346509375" rot="MR90">
-<attribute name="TP_SIGNAL_NAME" value="" x="38.150375" y="7.394009375" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="TP27" library="testpad" package="TP12SQ" value="TPTP12SQ" x="38.150375" y="8.346509375" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="35.610375" y="8.346509375" size="1" layer="38" rot="MR90"/>
+<attribute name="VALUE" x="37.515375" y="7.838509375" size="0.0254" layer="28" rot="MR90"/>
 </element>
-<element name="TP28" library="testpad" package="TP12SQ" value="TPTP12SQ" x="34.604421875" y="8.222621875" rot="MR90">
-<attribute name="TP_SIGNAL_NAME" value="" x="34.604421875" y="6.952621875" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="TP28" library="testpad" package="TP12SQ" value="TPTP12SQ" x="34.604421875" y="8.222621875" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="32.064421875" y="8.222621875" size="1" layer="38" rot="MR90"/>
+<attribute name="VALUE" x="33.969421875" y="7.714621875" size="0.0254" layer="28" rot="MR90"/>
 </element>
-<element name="TP29" library="testpad" package="TP12SQ" value="TPTP12SQ" x="32.540671875" y="8.222621875" rot="MR90">
-<attribute name="TP_SIGNAL_NAME" value="" x="32.540671875" y="6.635121875" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="TP29" library="testpad" package="TP12SQ" value="TPTP12SQ" x="32.540671875" y="8.222621875" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="30.000671875" y="8.222621875" size="1" layer="38" rot="MR90"/>
+<attribute name="VALUE" x="31.905671875" y="7.714621875" size="0.0254" layer="28" rot="MR90"/>
 </element>
-<element name="TP30" library="testpad" package="TP12SQ" value="TPTP12SQ" x="30.635671875" y="8.222621875" rot="MR90">
-<attribute name="TP_SIGNAL_NAME" value="" x="30.635671875" y="6.317621875" size="1.778" layer="28" rot="MR90" display="off"/>
+<element name="TP30" library="testpad" package="TP12SQ" value="TPTP12SQ" x="30.635671875" y="8.222621875" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="28.095671875" y="8.222621875" size="1" layer="38" rot="MR90"/>
+<attribute name="VALUE" x="30.000671875" y="7.714621875" size="0.0254" layer="28" rot="MR90"/>
 </element>
-<element name="TP31" library="testpad" package="TP12SQ" value="TPTP12SQ" x="41.960375" y="6.967759375" rot="MR270">
-<attribute name="TP_SIGNAL_NAME" value="" x="41.960375" y="9.190259375" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="TP31" library="testpad" package="TP12SQ" value="TPTP12SQ" x="41.960375" y="6.967759375" smashed="yes" rot="MR270">
+<attribute name="TP_SIGNAL_NAME" value="" x="44.500375" y="6.967759375" size="1" layer="38" rot="MR270"/>
+<attribute name="VALUE" x="42.595375" y="7.475759375" size="0.0254" layer="28" rot="MR270"/>
 </element>
-<element name="TP32" library="testpad" package="TP12SQ" value="TPTP12SQ" x="40.055375" y="6.967759375" rot="MR270">
-<attribute name="TP_SIGNAL_NAME" value="" x="40.055375" y="9.507759375" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="TP32" library="testpad" package="TP12SQ" value="TPTP12SQ" x="40.055375" y="6.967759375" smashed="yes" rot="MR270">
+<attribute name="TP_SIGNAL_NAME" value="" x="42.595375" y="6.967759375" size="1" layer="38" rot="MR270"/>
+<attribute name="VALUE" x="40.690375" y="7.475759375" size="0.0254" layer="28" rot="MR270"/>
 </element>
-<element name="TP33" library="testpad" package="TP12SQ" value="TPTP12SQ" x="38.150375" y="6.967759375" rot="MR270">
-<attribute name="TP_SIGNAL_NAME" value="" x="38.150375" y="9.825259375" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="TP33" library="testpad" package="TP12SQ" value="TPTP12SQ" x="38.150375" y="6.967759375" smashed="yes" rot="MR270">
+<attribute name="TP_SIGNAL_NAME" value="" x="40.690375" y="6.967759375" size="1" layer="38" rot="MR270"/>
+<attribute name="VALUE" x="38.785375" y="7.475759375" size="0.0254" layer="28" rot="MR270"/>
 </element>
-<element name="TP34" library="testpad" package="TP12SQ" value="TPTP12SQ" x="34.604421875" y="6.835121875" rot="MR270">
-<attribute name="TP_SIGNAL_NAME" value="" x="34.604421875" y="10.010121875" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="TP34" library="testpad" package="TP12SQ" value="TPTP12SQ" x="34.604421875" y="6.835121875" smashed="yes" rot="MR270">
+<attribute name="TP_SIGNAL_NAME" value="" x="37.144421875" y="6.835121875" size="1" layer="38" rot="MR270"/>
+<attribute name="VALUE" x="35.239421875" y="7.343121875" size="0.0254" layer="28" rot="MR270"/>
 </element>
-<element name="TP35" library="testpad" package="TP12SQ" value="TPTP12SQ" x="32.540671875" y="6.835121875" rot="MR270">
-<attribute name="TP_SIGNAL_NAME" value="" x="32.540671875" y="10.327621875" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="TP35" library="testpad" package="TP12SQ" value="TPTP12SQ" x="32.540671875" y="6.835121875" smashed="yes" rot="MR270">
+<attribute name="TP_SIGNAL_NAME" value="" x="35.080671875" y="6.835121875" size="1" layer="38" rot="MR270"/>
+<attribute name="VALUE" x="33.175671875" y="7.343121875" size="0.0254" layer="28" rot="MR270"/>
 </element>
-<element name="TP36" library="testpad" package="TP12SQ" value="TPTP12SQ" x="30.635671875" y="6.835121875" rot="MR270">
-<attribute name="TP_SIGNAL_NAME" value="" x="30.635671875" y="10.645121875" size="1.778" layer="28" rot="MR270" display="off"/>
+<element name="TP36" library="testpad" package="TP12SQ" value="TPTP12SQ" x="30.635671875" y="6.835121875" smashed="yes" rot="MR270">
+<attribute name="TP_SIGNAL_NAME" value="" x="33.175671875" y="6.835121875" size="1" layer="38" rot="MR270"/>
+<attribute name="VALUE" x="31.270671875" y="7.343121875" size="0.0254" layer="28" rot="MR270"/>
 </element>
-<element name="TP39" library="testpad" package="TP09SQ" value="TPTP09SQ" x="65.794540625" y="27.79430625" rot="MR206.6">
-<attribute name="TP_SIGNAL_NAME" value="" x="65.794540625" y="27.79430625" size="1.778" layer="28" rot="MR206.6" display="off"/>
+<element name="TP39" library="testpad" package="TP09SQ" value="TPTP09SQ" x="65.794540625" y="27.79430625" smashed="yes" rot="MR206.6">
+<attribute name="TP_SIGNAL_NAME" value="" x="66.647521875" y="29.49766875" size="1" layer="38" rot="MR206.6"/>
+<attribute name="VALUE" x="65.68133125" y="28.41913125" size="0.0254" layer="28" rot="MR206.6"/>
 </element>
-<element name="TP40" library="testpad" package="TP09SQ" value="TPTP09SQ" x="67.238328125" y="30.542853125" rot="MR206.6">
-<attribute name="TP_SIGNAL_NAME" value="" x="67.238328125" y="30.542853125" size="1.778" layer="28" rot="MR206.6" display="off"/>
+<element name="TP40" library="testpad" package="TP09SQ" value="TPTP09SQ" x="67.238328125" y="30.542853125" smashed="yes" rot="MR206.6">
+<attribute name="TP_SIGNAL_NAME" value="" x="68.091309375" y="32.246215625" size="1" layer="38" rot="MR206.6"/>
+<attribute name="VALUE" x="67.12511875" y="31.167678125" size="0.0254" layer="28" rot="MR206.6"/>
 </element>
 </elements>
 <signals>
