@@ -117,6 +117,15 @@ void CShiftPWM::SetRGB(int led, unsigned char r,unsigned char g,unsigned char b,
 		m_PWMValues[led+skip+offset+2*m_pinGrouping]	=( (unsigned int) b * m_maxBrightness)>>8;
 	}
 }
+void CShiftPWM::SetRGBW(int led, unsigned char r,unsigned char g,unsigned char b, unsigned char w){
+	int skip = 3*m_pinGrouping*(led/m_pinGrouping); // is not equal to 2*led. Division is rounded down first.
+	if(IsValidPin(led+skip+3*m_pinGrouping) ){
+		m_PWMValues[led+skip]					=( (unsigned int) r * m_maxBrightness)>>8;
+		m_PWMValues[led+skip+m_pinGrouping]		=( (unsigned int) g * m_maxBrightness)>>8;
+		m_PWMValues[led+skip+2*m_pinGrouping]	=( (unsigned int) b * m_maxBrightness)>>8;
+		m_PWMValues[led+skip+3*m_pinGrouping]	=( (unsigned int) w * m_maxBrightness)>>8;
+	}
+}
 
 void CShiftPWM::SetAllRGB(unsigned char r,unsigned char g,unsigned char b){
 	for(int k=0 ; (k+3*m_pinGrouping-1) < m_amountOfOutputs; k+=3*m_pinGrouping){

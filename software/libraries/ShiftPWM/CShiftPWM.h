@@ -44,6 +44,7 @@ public:
 	void SetGroupOf5(int group, unsigned char v0, unsigned char v1, unsigned char v2, unsigned char v3, unsigned char v4, int offset = 0);
 
 	void SetRGB(int led, unsigned char r,unsigned char g,unsigned char b, int offset = 0);
+	void SetRGBW(int led, unsigned char r,unsigned char g,unsigned char b, unsigned char w);
 	void SetAllRGB(unsigned char r,unsigned char g,unsigned char b);
 	void SetAllRGBW(unsigned char r,unsigned char g,unsigned char b,unsigned char w);
 	

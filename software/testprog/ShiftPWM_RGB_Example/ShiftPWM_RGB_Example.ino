@@ -64,9 +64,13 @@ void loop()
   // Turn all LED's off.
   ShiftPWM.SetAll(0);
 
-
+for(int led=0;led<numRGBleds;led++){ // loop over all LED's
+        
+        ShiftPWM.SetRGB(led, 255, 0, 0);
+        delay(250);
+      }
   // Fade in and fade out all outputs one by one fast. Usefull for testing your hardware. Use OneByOneSlow when this is going to fast.
-  ShiftPWM.OneByOneFast();
+  //ShiftPWM.OneByOneFast();
 
   /*
   // Fade in all outputs
