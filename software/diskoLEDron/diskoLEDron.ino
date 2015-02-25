@@ -27,7 +27,7 @@ int numRegisters = (numRGBleds+1)*bitsPerBoard/registerSize;
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
 
 int sTimer=0;
-int switchOffTemperature=26;
+int switchOffTemperature=35;
 
 // Connect pin 1 (on the left) of the sensor to +5V
 // Connect pin 2 of the sensor to whatever your DHTPIN is
@@ -46,6 +46,8 @@ void setup(){
   ShiftPWM.SetPinGrouping(1);
   ShiftPWM.SetAmountOfRegisters(numRegisters);
   ShiftPWM.Start(pwmFrequency,maxBrightness);
+  ShiftPWM.PrintInterruptLoad();
+  ShiftPWM.SetAllRGBW(200,200,200,200);
 }
 
 void temperature_check() {
@@ -59,6 +61,7 @@ float t = dht.readTemperature();
       ShiftPWM.SetAll(0);
     }
     else {
+      Serial.println(t);
       // everything kewl, do nothing
     }
   }
@@ -66,11 +69,11 @@ float t = dht.readTemperature();
 
 void loop()
 {    
-  ShiftPWM.SetAll(0);
- 
-  alternateAllRGBW(255,20); //fade red then green then blue then white (after each other) for all leds
-  //fadeAllWhite(255,20);
-  fadeAllRGBW(255,20); //fade red and green and blue and white (at same time) for all leds
+//  ShiftPWM.SetAll(0);
+temperature_check();
+//  alternateAllRGBW(255,20); //fade red then green then blue then white (after each other) for all leds
+//  //fadeAllWhite(255,20);
+//  //fadeAllRGBW(255,20); //fade red and green and blue and white (at same time) for all leds
   
 }
 
