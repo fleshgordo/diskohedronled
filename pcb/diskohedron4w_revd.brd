@@ -15,13 +15,13 @@
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
@@ -74,7 +74,7 @@
 <layer number="112" name="tSilk" color="7" fill="1" visible="no" active="yes"/>
 <layer number="113" name="guidesss" color="12" fill="1" visible="no" active="yes"/>
 <layer number="114" name="circles" color="12" fill="1" visible="no" active="yes"/>
-<layer number="115" name="bSilk" color="6" fill="1" visible="no" active="yes"/>
+<layer number="115" name="bSilk" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="116" name="Patch_BOT" color="7" fill="1" visible="no" active="yes"/>
 <layer number="117" name="geo_hellper_Milling" color="11" fill="1" visible="no" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="no" active="yes"/>
@@ -124,7 +124,7 @@
 <layer number="249" name="Edge" color="7" fill="1" visible="no" active="yes"/>
 <layer number="250" name="Descript" color="7" fill="1" visible="no" active="yes"/>
 <layer number="251" name="SMDround" color="7" fill="1" visible="no" active="yes"/>
-<layer number="253" name="geo_helper_axis" color="14" fill="1" visible="yes" active="yes"/>
+<layer number="253" name="geo_helper_axis" color="14" fill="1" visible="no" active="yes"/>
 <layer number="254" name="cooling" color="7" fill="1" visible="no" active="yes"/>
 <layer number="255" name="geo-helper" color="13" fill="1" visible="yes" active="yes"/>
 </layers>
@@ -5244,8 +5244,8 @@ design rules under a new name.</description>
 <element name="C1" library="rcl" package="175TMP-0810" value="220uF" x="73.453315625" y="45.176225" smashed="yes" rot="R301.5">
 <attribute name="NAME" x="73.34514375" y="50.135646875" size="1.27" layer="25" rot="R31.5"/>
 </element>
-<element name="C2" library="rcl" package="175TMP-0810" value="220uF" x="32.548465625" y="6.801421875" smashed="yes" rot="R270">
-<attribute name="NAME" x="31.913003125" y="11.31103125" size="1.016" layer="25"/>
+<element name="C2" library="rcl" package="175TMP-0810" value="220uF" x="32.748465625" y="6.001421875" smashed="yes" rot="R270">
+<attribute name="NAME" x="32.113003125" y="10.51103125" size="1.016" layer="25"/>
 </element>
 <element name="1D" library="diskohedron" package="SOT23-5" value="DS90LV011A" x="37.319575" y="20.958203125" smashed="yes" rot="MR333.4"/>
 <element name="JST" library="diskohedron" package="B8B-ZH" value="8PIN-ZH" x="44.109271875" y="47.314396875" smashed="yes">
@@ -5255,10 +5255,10 @@ design rules under a new name.</description>
 <attribute name="NAME" x="12.785915625" y="9.530246875" size="1.016" layer="25" rot="R270"/>
 </element>
 <element name="L1" library="inductors" package="DR127" value="30uH" x="29.365028125" y="20.096415625" smashed="yes" rot="MR270"/>
-<element name="D1" library="eagle-ltspice" package="DIODE_SMC" value="1N5824 3A" x="45.96789375" y="5.793409375" smashed="yes">
-<attribute name="SPICEMODEL" value="diode" x="45.96789375" y="5.793409375" size="1.778" layer="27" display="off"/>
-<attribute name="SPICEPREFIX" value="D" x="45.96789375" y="5.793409375" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="45.60389375" y="9.134909375" size="1.016" layer="25"/>
+<element name="D1" library="eagle-ltspice" package="DIODE_SMC" value="1N5824 3A" x="45.86789375" y="4.693409375" smashed="yes">
+<attribute name="SPICEMODEL" value="diode" x="45.86789375" y="4.693409375" size="1.778" layer="27" display="off"/>
+<attribute name="SPICEPREFIX" value="D" x="45.86789375" y="4.693409375" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="45.50389375" y="8.034909375" size="1.016" layer="25"/>
 </element>
 <element name="JP1" library="SparkFun-Connectors" package="1X05" value="EXTBRD" x="63.4040375" y="19.644678125" smashed="yes" rot="R243"/>
 <element name="D2" library="adafruit" package="SMADIODE" value="1n4001" x="56.559165625" y="45.13135" smashed="yes" rot="R90">
@@ -6185,10 +6185,10 @@ design rules under a new name.</description>
 <wire x1="28.8525" y1="11.7475" x2="29.4" y2="11.2" width="1.016" layer="16"/>
 <wire x1="29.4" y1="11.2" x2="29.4" y2="9.934165625" width="1.016" layer="16"/>
 <wire x1="29.4" y1="9.934165625" x2="29.5264375" y2="9.807728125" width="1.016" layer="16"/>
-<wire x1="42.26789375" y1="5.793409375" x2="37.606590625" y2="5.793409375" width="1.016" layer="1"/>
-<wire x1="37.606590625" y1="5.793409375" x2="36.8" y2="6.6" width="1.016" layer="1"/>
-<wire x1="36.8" y1="6.6" x2="31.4" y2="6.6" width="1.016" layer="1"/>
-<wire x1="31.4" y1="6.6" x2="29.5" y2="8.5" width="1.016" layer="1"/>
+<wire x1="42.16789375" y1="4.693409375" x2="38.706590625" y2="4.693409375" width="1.016" layer="1"/>
+<wire x1="38.706590625" y1="4.693409375" x2="36.8" y2="6.6" width="1.016" layer="1"/>
+<wire x1="36.8" y1="6.6" x2="30.9" y2="6.6" width="1.016" layer="1"/>
+<wire x1="30.9" y1="6.6" x2="29.5" y2="8.5" width="1.016" layer="1"/>
 </signal>
 <signal name="DATAOUT-L">
 <contactref element="OUT-L" pad="P$4"/>
@@ -6358,7 +6358,7 @@ design rules under a new name.</description>
 <contactref element="C2" pad="+"/>
 <contactref element="LM2586" pad="1"/>
 <wire x1="32.044859375" y1="3.805028125" x2="27.6" y2="3.805028125" width="1.016" layer="1"/>
-<wire x1="32.044859375" y1="3.805028125" x2="32.548465625" y2="3.301421875" width="1.016" layer="1"/>
+<wire x1="32.044859375" y1="3.805028125" x2="32.748465625" y2="2.501421875" width="1.016" layer="1"/>
 <wire x1="27.433446875" y1="6.798484375" x2="27.433446875" y2="4.566553125" width="1.016" layer="1"/>
 <wire x1="27.433446875" y1="4.566553125" x2="27.6" y2="4.4" width="1.016" layer="1"/>
 <wire x1="27.6" y1="4.4" x2="27.6" y2="3.805028125" width="1.016" layer="1"/>
