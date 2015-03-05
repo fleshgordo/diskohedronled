@@ -1,0 +1,66 @@
+Part       Value                Package              Library                                Position (mm)         Orientation
+
+1D         DS90LV011A           SOT23-5              diskohedron                            (37.319575 20.958203125) MR333.4
+4D         SN65LVDS047D         SOIC127P600X175-16N  Texas Instruments_By_element14_Batch_1 (51.202815625 14.304575) MR26.6
+4R         SN65LVDST32          SOIC16               diskohedron                            (54.2412875 34.099584375) MR243.4
+C1         220uF                175TMP-0810          rcl                                    (73.453315625 45.176225) R301.5
+C2         220uF                175TMP-0810          rcl                                    (32.748465625 6.001421875) R270
+C3         100n                 C0805                rcl                                    (48.70091875 38.754090625) MR333.4
+C4         100n                 C0805                rcl                                    (42.496634375 22.241146875) MR153.4
+D1         1N5824 3A            DIODE_SMC            eagle-ltspice                          (45.86789375 4.693409375) R0
+D2         1n4001               SMADIODE             adafruit                               (56.559165625 45.13135) R90
+F1                              1812                 adafruit                               (11.405028125 8.9121375) R90
+IN1        HERMAPHRODITMINI6PIN HERMAPHRODITMINI6PIN diskohedron                            (64.6552125 49.801346875) MR0
+JP1        EXTBRD               1X05                 SparkFun-Connectors                    (63.4040375 19.644678125) R243
+JST        8PIN-ZH              B8B-ZH               diskohedron                            (44.109271875 47.314396875) R0
+L1         30uH                 DR127                inductors                              (29.365028125 20.096415625) MR270
+LM2586     LM2596               TO263-5              linear                                 (21.642246875 10.202084375) R90
+OUT-L      HERMAPHRODITMINI6PIN HERMAPHRODITMINI6PIN diskohedron                            (22.256828125 35.34150625) MR296.6
+OUT-R      HERMAPHRODITMINI6PIN HERMAPHRODITMINI6PIN diskohedron                            (64.957453125 18.586815625) MR116.6
+OUT-S      HERMAPHRODITMINI6PIN HERMAPHRODITMINI6PIN diskohedron                            (22.56889375 4.132359375) MR180
+POWERIN    HERMAPHRODIT2PIN     HERMAPHRODIT2PIN     diskohedron                            (72.56749375 44.47815625) MR0
+POWEROUT-L HERMAPHRODIT2PIN     HERMAPHRODIT2PIN     diskohedron                            (18.51566875 15.94274375) MR296.6
+POWEROUT-R HERMAPHRODIT2PIN     HERMAPHRODIT2PIN     diskohedron                            (68.699096875 37.96995625) MR116.6
+POWEROUT-S HERMAPHRODIT2PIN     HERMAPHRODIT2PIN     diskohedron                            (14.661690625 9.449059375) MR180
+R1         220R                 M0805                resistor                               (45.98759375 24.187725) R31.5
+R2                              R0603                rcl                                    (47.7672 33.920103125) MR243
+R3                              R0603                rcl                                    (57.889103125 40.5454) MR63
+STP04      STP04CM05            TSSOP16              stp04                                  (43.505290625 27.09241875) R116.6
+TP1        TPTP12SQ             TP12SQ               testpad                                (69.63864375 34.626440625) MR206.6
+TP2        TPTP12SQ             TP12SQ               testpad                                (68.5572 32.429975)   MR206.6
+TP3        TPTP09SQ             TP09SQ               testpad                                (66.733634375 29.458709375) MR206.6
+TP4        TPTP09SQ             TP09SQ               testpad                                (65.186778125 26.604015625) MR206.6
+TP5        TPTP12SQ             TP12SQ               testpad                                (64.27726875 24.32585) MR206.6
+TP6        TPTP12SQ             TP12SQ               testpad                                (63.263178125 22.216640625) MR206.6
+TP7        TPTP12SQ             TP12SQ               testpad                                (70.945334375 33.986178125) MR206.6
+TP8        TPTP12SQ             TP12SQ               testpad                                (69.872490625 31.81821875) MR206.6
+TP9        TPTP20SQ             TP20SQ               testpad                                (68.440896875 29.332759375) MR206.6
+TP10       TPTP20SQ             TP20SQ               testpad                                (66.991803125 26.58855) MR206.6
+TP11       TPTP12SQ             TP12SQ               testpad                                (65.483959375 23.6855875) MR206.6
+TP12       TPTP12SQ             TP12SQ               testpad                                (64.46986875 21.576378125) MR206.6
+TP13       TPTP12SQ             TP12SQ               testpad                                (24.696009375 33.437053125) MR26.6
+TP14       TPTP12SQ             TP12SQ               testpad                                (23.7672125 31.58421875) MR26.6
+TP15       TPTP12SQ             TP12SQ               testpad                                (22.7971625 29.413884375) MR26.6
+TP16       TPTP12SQ             TP12SQ               testpad                                (20.163365625 23.592303125) MR26.6
+TP17       TPTP12SQ             TP12SQ               testpad                                (19.234565625 21.73946875) MR26.6
+TP18       TPTP12SQ             TP12SQ               testpad                                (18.30576875 19.886634375) MR26.6
+TP19       TPTP12SQ             TP12SQ               testpad                                (23.45946875 34.06755) MR26.6
+TP20       TPTP12SQ             TP12SQ               testpad                                (22.53066875 32.21471875) MR26.6
+TP21       TPTP12SQ             TP12SQ               testpad                                (21.601871875 30.044384375) MR26.6
+TP22       TPTP12SQ             TP12SQ               testpad                                (18.926821875 24.2228) MR26.6
+TP23       TPTP12SQ             TP12SQ               testpad                                (17.998025 22.369965625) MR26.6
+TP24       TPTP12SQ             TP12SQ               testpad                                (17.069225 20.51713125) MR26.6
+TP25       TPTP12SQ             TP12SQ               testpad                                (41.960375 8.346509375) MR90
+TP26       TPTP12SQ             TP12SQ               testpad                                (40.055375 8.346509375) MR90
+TP27       TPTP12SQ             TP12SQ               testpad                                (38.150375 8.346509375) MR90
+TP28       TPTP12SQ             TP12SQ               testpad                                (34.604421875 8.222621875) MR90
+TP29       TPTP12SQ             TP12SQ               testpad                                (32.540671875 8.222621875) MR90
+TP30       TPTP12SQ             TP12SQ               testpad                                (30.635671875 8.222621875) MR90
+TP31       TPTP12SQ             TP12SQ               testpad                                (41.960375 6.967759375) MR270
+TP32       TPTP12SQ             TP12SQ               testpad                                (40.055375 6.967759375) MR270
+TP33       TPTP12SQ             TP12SQ               testpad                                (38.150375 6.967759375) MR270
+TP34       TPTP12SQ             TP12SQ               testpad                                (34.604421875 6.835121875) MR270
+TP35       TPTP12SQ             TP12SQ               testpad                                (32.540671875 6.835121875) MR270
+TP36       TPTP12SQ             TP12SQ               testpad                                (30.635671875 6.835121875) MR270
+TP39       TPTP09SQ             TP09SQ               testpad                                (65.794540625 27.79430625) MR206.6
+TP40       TPTP09SQ             TP09SQ               testpad                                (67.338328125 30.642853125) MR206.6

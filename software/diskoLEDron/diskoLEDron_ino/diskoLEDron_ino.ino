@@ -70,8 +70,8 @@ float t = dht.readTemperature();
 void loop()
 {    
 //  ShiftPWM.SetAll(0);
-//temperature_check();
-  alternateAllRGBW(255,20); //fade red then green then blue then white (after each other) for all leds
+temperature_check();
+//  alternateAllRGBW(255,20); //fade red then green then blue then white (after each other) for all leds
 //  //fadeAllWhite(255,20);
 //  //fadeAllRGBW(255,20); //fade red and green and blue and white (at same time) for all leds
   

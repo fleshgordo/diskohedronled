@@ -1,0 +1,20 @@
+Part       Value                Package              Library                                Position (mm)         Orientation
+
+1D         DS90LV011A           SOT23-5              diskohedron                            (37.319575 20.958203125) MR333.4
+4R         SN65LVDST32          SOIC16               diskohedron                            (54.2412875 34.099584375) MR243.4
+C1         220uF                175TMP-0810          rcl                                    (73.453315625 45.176225) R301.5
+C2         220uF                175TMP-0810          rcl                                    (32.748465625 6.001421875) R270
+C3         100n                 C0805                rcl                                    (48.70091875 38.754090625) MR333.4
+C4         100n                 C0805                rcl                                    (42.496634375 22.241146875) MR153.4
+D1         1N5824 3A            DIODE_SMC            eagle-ltspice                          (45.86789375 4.693409375) R0
+D2         1n4001               SMADIODE             adafruit                               (56.559165625 45.13135) R90
+F1                              1812                 adafruit                               (11.405028125 8.9121375) R90
+IN1        HERMAPHRODITMINI6PIN HERMAPHRODITMINI6PIN diskohedron                            (64.6552125 49.801346875) MR0
+POWERIN    HERMAPHRODIT2PIN     HERMAPHRODIT2PIN     diskohedron                            (72.56749375 44.47815625) MR0
+JST        8PIN-ZH              B8B-ZH               diskohedron                            (44.109271875 47.314396875) R0
+L1         30uH                 DR127                inductors                              (29.365028125 20.096415625) MR270
+LM2586     LM2596               TO263-5              linear                                 (21.642246875 10.202084375) R90
+OUT-R      HERMAPHRODITMINI6PIN HERMAPHRODITMINI6PIN diskohedron                            (64.957453125 18.586815625) MR116.6
+POWEROUT-R HERMAPHRODIT2PIN     HERMAPHRODIT2PIN     diskohedron                            (68.699096875 37.96995625) MR116.6
+R1         220R                 M0805                resistor                               (45.98759375 24.187725) R31.5
+STP04      STP04CM05            TSSOP16              stp04                                  (43.505290625 27.09241875) R116.6

@@ -6,6 +6,11 @@ const int ShiftPWM_latchPin=8;
 const bool ShiftPWM_invertOutputs = false; 
 const bool ShiftPWM_balanceLoad = false;
 
+
+#define SHIFTPWM_NOSPI
+const int ShiftPWM_dataPin = 11;
+const int ShiftPWM_clockPin = 13;
+
 #include <ShiftPWM.h>   // include ShiftPWM.h after setting the pins!
 
 unsigned char maxBrightness = 255;
@@ -70,8 +75,8 @@ float t = dht.readTemperature();
 void loop()
 {    
 //  ShiftPWM.SetAll(0);
-//temperature_check();
-  alternateAllRGBW(255,20); //fade red then green then blue then white (after each other) for all leds
+temperature_check();
+//  alternateAllRGBW(255,20); //fade red then green then blue then white (after each other) for all leds
 //  //fadeAllWhite(255,20);
 //  //fadeAllRGBW(255,20); //fade red and green and blue and white (at same time) for all leds
   
