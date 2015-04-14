@@ -21,4 +21,4 @@ then
 fi
 
 # reset arduino and upload with avrdude
-ssh root@$HOST 'ssh '$USER2'@'$HOST2' "stty -F /dev/ttyUSB0 hupcl && avrdude -c stk500v1 -b57600 -P /dev/ttyUSB0 -p m328p -u -U flash:w:'$FILE'"'
+ssh root@$HOST 'ssh '$USER2'@'$HOST2' "stty -F /dev/ttyUSB0 hupcl && avrdude -c stk500v1 -b57600 -P /dev/ttyUSB0 -p m1280 -u -U flash:w:'$FILE'"'
