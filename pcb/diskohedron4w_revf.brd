@@ -13,13 +13,13 @@
 <layer number="17" name="Pads" color="2" fill="1" visible="no" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="no" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="yes"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
@@ -74,7 +74,7 @@
 <layer number="112" name="tSilk" color="7" fill="1" visible="no" active="yes"/>
 <layer number="113" name="guidesss" color="12" fill="1" visible="no" active="yes"/>
 <layer number="114" name="circles" color="12" fill="1" visible="no" active="yes"/>
-<layer number="115" name="bSilk" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="115" name="bSilk" color="6" fill="1" visible="no" active="yes"/>
 <layer number="116" name="Patch_BOT" color="7" fill="1" visible="no" active="yes"/>
 <layer number="117" name="geo_hellper_Milling" color="11" fill="1" visible="no" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="no" active="yes"/>
@@ -5394,8 +5394,12 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="8.600028125" y="5.9546375" size="0.6096" layer="27" rot="R90"/>
 <attribute name="NAME" x="8.545028125" y="8.8546375" size="0.6096" layer="25" rot="R90"/>
 </element>
-<element name="R2" library="rcl" package="R0603" value="" x="47.7672" y="33.920103125" rot="MR243"/>
-<element name="R3" library="rcl" package="R0603" value="" x="57.889103125" y="40.5454" rot="MR63"/>
+<element name="R2" library="rcl" package="R0603" value="" x="47.7672" y="33.920103125" smashed="yes" rot="MR243">
+<attribute name="VALUE" x="49.176284375" y="35.35074375" size="1.27" layer="28" rot="MR243"/>
+</element>
+<element name="R3" library="rcl" package="R0603" value="" x="57.889103125" y="40.5454" smashed="yes" rot="MR63">
+<attribute name="VALUE" x="56.480021875" y="39.11475625" size="1.27" layer="28" rot="MR63"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
