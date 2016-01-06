@@ -323,7 +323,7 @@ void draw(){
       rg = random(noiseBrightnessG);
       rb = random(noiseBrightnessB);
       rw = random(noiseBrightnessW);
-      ShiftPWM.SetRGBWsimple(ti,rr,rg,rb,0);
+      ShiftPWM.SetRGBWsimple(ti,rr,rg,rb,rw);
     }
   }else if(mode==MODE_BWFLICKER){
     for(int ti=0;ti<30;ti++){
@@ -442,17 +442,9 @@ int field=0;
 boolean readNumber=false;
 int number=0;
 
-void parseParam(){
-  if(readNumber){
-    if(state=STATE_PARAM){
-      if(mode==MODE_GOL)seedTime=number*50;
-      else if(mode==MODE_BWFLICKER)bwintensity=number;
-      else if(mode==MODE_COLORNOISE)noiseBrightnessR=min(number,maxBrightness);
-      Serial.print("set param to ");
-      Serial.println(number);
-    }
-  }
-}
+int bootbright=maxBrightness;
+float bootspeed=0.1663195;
+
 
 void checkInput(){
   //if(Serial.available()>0){
@@ -463,6 +455,7 @@ void checkInput(){
         state=STATE_MODE;
         readNumber=false; //really needed?
       }else if(val=='p'){
+        field=0;
         state=STATE_PARAM;
         readNumber=false; //really needed?
         Serial.println("received p");
@@ -470,7 +463,6 @@ void checkInput(){
       
       if(val==','){
         parseParam();
-        field++;
         readNumber=false;
       }
       
@@ -497,6 +489,29 @@ void checkInput(){
     }
 }
 
+void parseParam(){
+  if(readNumber){
+    if(state=STATE_PARAM){
+      if(mode==MODE_GOL){
+        if(field==0)seedTime=number*50;
+        if(field==1)generationTime=number*5;
+      }else if(mode==MODE_BWFLICKER){
+        if(field==0)bwintensity=number;
+      }else if(mode==MODE_COLORNOISE){
+        if(field==0)noiseBrightnessR=min(number,maxBrightness);
+        if(field==1)noiseBrightnessG=min(number,maxBrightness);
+        if(field==2)noiseBrightnessB=min(number,maxBrightness);
+        if(field==3)noiseBrightnessW=min(number,maxBrightness);
+      }else if(mode==MODE_BOOT){
+        if(field==0)bootbright=number;
+        if(field==1)bootspeed=21.0/(float)(number+1);
+      }
+      Serial.print("set param to ");
+      Serial.println(number);
+      field++;
+    }
+  }
+}
 
 
 
@@ -618,7 +633,7 @@ void bootLeds(){
   int br = 0;
   int dr=0;
   for(int i=0;i<42;i++){
-    float brbr=(float)maxBrightness;
+    float brbr=(float)min(bootbright,maxBrightness);
     if(i%6==0){
       bright = abs(     (  bootY-((i/6)+0.5) )  *0.27);
       if(bright<=1.0){
