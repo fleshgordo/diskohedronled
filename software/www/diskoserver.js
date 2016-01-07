@@ -1,15 +1,21 @@
 // creating globals for server, socket, 
 
-var server = require('http').createServer();
-var io = require('socket.io')(server);
-var exec = require('child_process').exec,
-	child;
+var server = require('http').createServer(),
+	io = require('socket.io')(server),
+	exec = require('child_process').exec,
+	child,
+	SerialPort = require("serialport").SerialPort,
+	fs = require('fs'),
+	logS = "** socket.io ** ",
+	logA = "[[  arduino  ]] ",
+	logN = "##  node.js  ## ";
 
-var SerialPort = require("serialport").SerialPort;
-var fs = require('fs');
+
+/*
+ * Initializing serial port
+ */
 
 //var serialPort = new SerialPort("/dev/ttyACM0", {
-
 var serialPort = new SerialPort("/dev/ttyUSB0", {
 	baudrate: 115200,
 	dataBits: 8,
@@ -18,27 +24,21 @@ var serialPort = new SerialPort("/dev/ttyUSB0", {
 	flowControl: false
 });
 
-var logS = "** socket.io ** ",
-	logA = "[[  arduino  ]] ",
-	logN = "##  node.js  ## ";
-
-/*
- * Initializing serial port
- */
 serialPort.open(function(error) {
 	if (error) {
-		console.log(logN + ' failed to open: ' + error);
+		console.log(logN + 'failed to open: ' + error);
 	} else {
 		console.log(logN + 'opened serialport successfully.');
 		//serialPort.write('A');
 	}
 });
 
-serialPort.on('data', receiveSerial);
-
-function receiveSerial(data) {
-	console.log(logA + "arduino: " + data);
-}
+/*
+ * Receive data callback
+ */
+serialPort.on('data', function receiveSerial(data) {
+	console.log(logA + data);
+});
 
 /*
  * Initializing socket.io and listeners
@@ -58,7 +58,7 @@ io.sockets.on('connection', function(socket) {
 
 	// save presets and write to file
 	socket.on('savePresets', function(presets) {
-		fs.writeFile("./js/presets.js", "var presets=" + JSON.stringify(presets) + ";",
+		fs.writeFile("/var/www/js/presets.js", "var presets=" + JSON.stringify(presets) + ";",
 			function(err) {
 				if (err) {
 					return console.log(err);
@@ -97,9 +97,9 @@ io.sockets.on('connection', function(socket) {
 	});
 
 	/*
-	 * MODE 0 PARAMS
+	 * CHANGING PARAMS
 	 */
-	socket.on('p1', function(_val) {
+	socket.on('p', function(_val) {
 		var isOpen = serialPort.isOpen();
 		if (isOpen === true) {
 			serialPort.write("p," + _val + ";");
@@ -107,26 +107,6 @@ io.sockets.on('connection', function(socket) {
 		}
 	});
 
-	/*
-	 * MODE 2 PARAMS 
-	 */
-	socket.on('p2', function(_val) {
-		var isOpen = serialPort.isOpen();
-		if (isOpen === true) {
-			serialPort.write("p," + _val + ";");
-			console.log(logS + 'changing parameter: ' + _val);
-		}
-	});
-	/*
-	 * MODE 2 PARAMS 
-	 */
-	socket.on('p3', function(_val) {
-		var isOpen = serialPort.isOpen();
-		if (isOpen === true) {
-			serialPort.write("p," + _val + ";");
-			console.log(logS + 'changing parameter: ' + _val);
-		}
-	});
 });
 
 server.listen(3003);

@@ -46,14 +46,13 @@ var app = {
 
 		$('#presetDropdown').on('change', function() {
 			var mode = $(this).find(':selected').data('mode'),
-				preset = $(this).val(),
-				presetName = 'p' + mode;
+				preset = $(this).val();
 
 			if (mode !== undefined) {
-				console.log('set mode to: ' + mode + ' with preset: ' + preset + ' and presetName: ' + presetName);
+				console.log('set mode to: ' + mode + ' with preset: ' + preset);
 				// send values to lamp
 				app.socket.emit('lampMode', parseInt(mode));
-				app.socket.emit(presetName, preset);
+				app.socket.emit('p', preset);
 
 				$('.lampMode>option').attr('selected', false);
 				$('.lampMode>option:eq(' + mode + ')').attr('selected', true);
@@ -100,6 +99,18 @@ var app = {
 				var array = preset.split(',');
 				$('#s-3-seed').val(array[0]).slider("refresh");
 				$('#s-3-generation').val(array[1]).slider("refresh");
+				break;
+			case 4:
+				var array = preset.split(',');
+				$('#s-4-bright').val(array[0]).slider("refresh");
+				$('#s-4-speed').val(array[1]).slider("refresh");
+				break;
+			case 5:
+				var array = preset.split(',');
+				$('#s-5-brightRed').val(array[0]).slider("refresh");
+				$('#s-5-brightGreen').val(array[1]).slider("refresh");
+				$('#s-5-brightBlue').val(array[2]).slider("refresh");
+				$('#s-5-brightWhite').val(array[3]).slider("refresh");
 				break;
 		}
 	},
@@ -152,6 +163,8 @@ var app = {
 							break;
 						case 2:
 						case 3:
+						case 4:
+						case 5:
 							value = app.savePresets(currMode);
 							break;
 
@@ -179,7 +192,9 @@ var app = {
 
 		/* SLIDER MADNESS INITS AND SLIDE CALLBACKS */
 		$('#s-g-bright, #s-1-bright, #s-2-brightRed, #s-2-brightGreen, #s-2-brightBlue, #s-2-brightWhite, #s-4-bright').slider(app.inits.slider165);
-		$('#s-3-seed,#s-3-generation').slider(app.inits.slider255);
+		$('#s-5-brightRed, #s-5-brightGreen, #s-5-brightBlue, #s-5-brightWhite').slider(app.inits.slider165);
+
+		$('#s-3-seed,#s-3-generation, #s-4-speed').slider(app.inits.slider255);
 		$('#s-4-speed').slider(app.inits.sliderMax1000);;
 
 		$("#s-g-bright").on("slidestop", function(event, ui) {
@@ -187,23 +202,26 @@ var app = {
 			app.socket.emit('pBrightness', value);
 		});
 
-		$("#s-1-bright").on("slidestop", function(event, ui) {
+		$("#s-1-bright, #s-4-speed").on("slidestop", function(event, ui) {
 			var value = parseInt($(this).val());
-			app.socket.emit('p1', value);
+			app.socket.emit('p', value);
 		});
 
 		$("#s-2-brightRed, #s-2-brightBlue, #s-2-brightGreen, #s-2-brightWhite").on("slidestop", function(event, ui) {
 			var params = app.savePresets('2');
-			app.socket.emit('p2', params);
+			app.socket.emit('p', params);
 		});
-
 		$("#s-3-seed, #s-3-generation").on("slidestop", function(event, ui) {
 			var params = app.savePresets('3');
-			app.socket.emit('p3', params);
+			app.socket.emit('p', params);
 		});
-		$("#s-4-speed").on("slidestop", function(event, ui) {
-			var value = parseInt($(this).val());
-			app.socket.emit('p4', value);
+		$("#s-4-bright, #s-4-speed").on("slidestop", function(event, ui) {
+			var params = app.savePresets('4');
+			app.socket.emit('p', params);
+		});
+		$("#s-5-brightRed, #s-5-brightBlue, #s-5-brightGreen, #s-5-brightWhite").on("slidestop", function(event, ui) {
+			var params = app.savePresets('5');
+			app.socket.emit('p', params);
 		});
 
 	},
