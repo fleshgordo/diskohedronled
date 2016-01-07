@@ -6,23 +6,30 @@ var exec = require('child_process').exec,
 	child;
 
 var SerialPort = require("serialport").SerialPort;
+var fs = require('fs');
 
+//var serialPort = new SerialPort("/dev/ttyACM0", {
 
 var serialPort = new SerialPort("/dev/ttyUSB0", {
-	baudrate: 9600,
+	baudrate: 115200,
 	dataBits: 8,
 	parity: 'none',
 	stopBits: 1,
 	flowControl: false
 });
 
+var logS = "** socket.io ** ",
+	logA = "[[  arduino  ]] ",
+	logN = "##  node.js  ## ";
 
-
+/*
+ * Initializing serial port
+ */
 serialPort.open(function(error) {
 	if (error) {
-		console.log('** failed to open: ' + error);
+		console.log(logN + ' failed to open: ' + error);
 	} else {
-		console.log('** opened serialport successfully.');
+		console.log(logN + 'opened serialport successfully.');
 		//serialPort.write('A');
 	}
 });
@@ -30,15 +37,18 @@ serialPort.open(function(error) {
 serialPort.on('data', receiveSerial);
 
 function receiveSerial(data) {
-	console.log("arduino: " + data);
+	console.log(logA + "arduino: " + data);
 }
 
+/*
+ * Initializing socket.io and listeners
+ */
 io.sockets.on('connection', function(socket) {
-	console.log('** socket connected');
+	console.log(logS + 'socket connected');
 
 	// callback for client disconnect
 	socket.on('disconnect', function() {
-		console.log('** socket disconnected');
+		console.log(logS + 'socket disconnected');
 	});
 
 	// shutdown entire board
@@ -46,6 +56,16 @@ io.sockets.on('connection', function(socket) {
 		child = exec('shutdown -h now');
 	});
 
+	// save presets and write to file
+	socket.on('savePresets', function(presets) {
+		fs.writeFile("./js/presets.js", "var presets=" + JSON.stringify(presets) + ";",
+			function(err) {
+				if (err) {
+					return console.log(err);
+				}
+				console.log(logS + "File was saved ...");
+			});
+	});
 	// switch lamp on/off
 	socket.on('lampStatus', function(_status) {
 		console.log('#### switch lamp to ' + _status);
@@ -59,7 +79,7 @@ io.sockets.on('connection', function(socket) {
 		var isOpen = serialPort.isOpen();
 		if (isOpen === true) {
 			serialPort.write("m," + _status + ";");
-			console.log('### switch lamp to mode: ' + _status);
+			console.log(logS + 'switch lamp to mode: ' + _status);
 		}
 	});
 
@@ -72,28 +92,39 @@ io.sockets.on('connection', function(socket) {
 		var isOpen = serialPort.isOpen();
 		if (isOpen === true) {
 			serialPort.write("p," + _val + ";");
-			console.log('### changing brightness to: ' + _val);
+			console.log(logS + 'changing brightness to: ' + _val);
 		}
 	});
 
 	/*
-	 * MODE 1 PARAMS
+	 * MODE 0 PARAMS
 	 */
-	socket.on('p1Brightness', function(_val) {
+	socket.on('p1', function(_val) {
 		var isOpen = serialPort.isOpen();
 		if (isOpen === true) {
 			serialPort.write("p," + _val + ";");
-			console.log('### changing parameter: ' + _val);
+			console.log(logS + 'changing parameter: ' + _val);
+		}
+	});
+
+	/*
+	 * MODE 2 PARAMS 
+	 */
+	socket.on('p2', function(_val) {
+		var isOpen = serialPort.isOpen();
+		if (isOpen === true) {
+			serialPort.write("p," + _val + ";");
+			console.log(logS + 'changing parameter: ' + _val);
 		}
 	});
 	/*
-	 * MODE 2 PARAMS
+	 * MODE 2 PARAMS 
 	 */
-	socket.on('p1Brightness', function(_val) {
+	socket.on('p3', function(_val) {
 		var isOpen = serialPort.isOpen();
 		if (isOpen === true) {
 			serialPort.write("p," + _val + ";");
-			console.log('### changing parameter: ' + _val);
+			console.log(logS + 'changing parameter: ' + _val);
 		}
 	});
 });

@@ -44,6 +44,7 @@
                 <div id="paramMode1" class="modes">
                     <label for="s-1-bright">Brightness:</label>
                     <div id="s-1-bright" class="slideee" value="80" min="0" max="255"></div>
+                    <br /><br /><button class="savePreset" data-mode="1">save preset</button>
                 </div>
                 <div id="paramMode2" class="modes">
                     <label for="s-2-bright">Brightness Red:</label>
@@ -54,20 +55,30 @@
                     <div id="s-2-brightBlue" class="slide2" value="0" min="0" max="165"></div>
                     <label for="s-2-brightWhite">Brightness White:</label>
                     <div id="s-2-brightWhite" class="slide2" value="0" min="0" max="165"></div>
+                    <br /><br /><button class="savePreset" data-mode="2">save preset</button>
                 </div>
                 <div id="paramMode3" class="modes">
                     <label for="s-3-generation">Generation time:</label>
                     <div id="s-3-generation" class="slide3" value="80" min="0" max="255"></div>
                     <label for="s-3-seed">Seed time:</label>
                     <div id="s-3-seed" class="slide3" value="80" min="0" max="255"></div>
+                    <br /><br /><button class="savePreset" data-mode="3">save preset</button>
                 </div>
                 <div id="paramMode4" class="modes">
                     <label for="s-4-speed">Speed:</label>
                     <div id="s-4-speed" class="slideee" value="80" min="0" max="255"></div>
+                    <br /><br /><button class="savePreset" data-mode="4">save preset</button>
                 </div>
-                
             </div>
         </div>
+        <div id="modalsavePreset">
+            SAVE PRESET
+            <form name="formsavePreset" id="fSavePreset">
+                <input type="text" value="" name="savePresetName" class="input" />
+                <input type="submit" value="submit" />
+            </form>
+        </div>
+        <script src="./js/presets.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <!--<script type="text/javascript" src="cordova.js"></script>-->

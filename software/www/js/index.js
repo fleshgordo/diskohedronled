@@ -1,45 +1,36 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 var app = {
 	socket: {},
-	presets: {
-		1: {
-			'test1': 10,
-			'test2': 155
+	inits: {
+		sliderMax165: {
+			min: 0,
+			max: 165,
+			value: 100
 		},
-		2: {
-			'KRAZYRED': [165, 0, 0, 0],
-			'KRAZYGREEN': [0, 165, 0, 0],
-			'KRAZYBLUE': [0, 0, 165, 0]
+		sliderMax255: {
+			min: 0,
+			max: 255,
+			value: 100
 		},
-		3: {
-			'preset': [165, 200]
-		}
+		sliderMax1000: {
+			min: 0,
+			max: 1000,
+			value: 500
+		},
+		dropDownStatus: false
 	},
-	// Application Constructor
+
+	/*
+	 * GLOBAL INIT
+	 */
 	initialize: function() {
 		this.bindEvents();
 		this.initializePresets();
 		this.bindClickHandlers();
 	},
 
-	// Bind Event Listeners
+	/*
+	 * Bind Event Listeners
+	 */
 	bindEvents: function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
 		app.socket = io.connect('http://192.168.66.1:3003');
@@ -50,47 +41,52 @@ var app = {
 	 * init the presets
 	 */
 	initializePresets: function() {
-		for (var i in app.presets) {
-			$.each(app.presets[i], function(key, value) {
-				console.log('preset name is: ' + key + ' preset value is: ' + value);
-				$('#presetDropdown').append('<option value="' + value + '" data-modus="' + i + '">' + key + '</option>');
-			});
-		}
+
+		app.buildPresetDropdown();
 
 		$('#presetDropdown').on('change', function() {
-			var mode = $(this).find(':selected').data('modus'),
+			var mode = $(this).find(':selected').data('mode'),
 				preset = $(this).val(),
 				presetName = 'p' + mode;
 
-			console.log('set mode to: ' + mode + ' with preset: ' + preset + ' and presetName: ' + presetName);
+			if (mode !== undefined) {
+				console.log('set mode to: ' + mode + ' with preset: ' + preset + ' and presetName: ' + presetName);
+				// send values to lamp
+				app.socket.emit('lampMode', parseInt(mode));
+				app.socket.emit(presetName, preset);
 
-			// send values to lamp
-			app.socket.emit('lampMode', parseInt(mode));
-			app.socket.emit(presetName, preset);
+				$('.lampMode>option').attr('selected', false);
+				$('.lampMode>option:eq(' + mode + ')').attr('selected', true);
+				app.inits.dropDownStatus = true;
+				$(".lampMode").change();
 
-
-			// update dropdown and show/hide parameters section
-			$(".lampMode").val(mode);
-			$('.modes').hide();
-			//$('.lampMode>option:eq(' + mode + ')').attr('selected', true);
-			$('#paramMode' + mode).show();
-
-			// update slider
-			app.setSliderPresets(mode, preset);
-
+				// update slider
+				app.setSliderPresets(mode, preset);
+			}
 		});
 	},
+	/*
+	 * build preset dropdown and append values
+	 */
+	buildPresetDropdown: function() {
+		$('#presetDropdown').append('<option value="">________</option>');
+		for (var i in presets) {
+			$('#presetDropdown').append('<option value="">****** Mode ' + presets[i].pName + ' *************</option>');
+			$.each(presets[i].entries, function(key, value) {
+				//console.log('preset name is: ' + key + ' preset value is: ' + value);
+				$('#presetDropdown').append('<option value="' + value + '" data-mode="' + i + '">' + key + '</option>');
+			});
+		}
+	},
+
 	/*
 	 * set sliders...
 	 * @param {string} mode - selected mode 0, 1, 2, 3
 	 * @param {array} presets - presets...
 	 */
 	setSliderPresets: function(mode, preset) {
-		console.log(mode);
-		console.log(typeof(mode));
 		switch (mode) {
 			case 1:
-				console.log('set slider 1 to: ' + preset);
 				$('#s-1-bright').val(preset).slider("refresh");
 				break;
 			case 2:
@@ -109,6 +105,21 @@ var app = {
 	},
 
 	/*
+	 * read sliders values...
+	 * @param {string} _mode - selected mode 0, 1, 2, 3
+	 * @return {array} values in array
+	 */
+	savePresets: function(_mode) {
+		var params = [];
+		$('.slide' + _mode).each(function() {
+			var value = parseInt($(this).val());
+			isNaN(value) ?
+				params.push(0) : params.push(value);
+		});
+		return params;
+	},
+
+	/*
 	 * Bind global click handlers...
 	 */
 	bindClickHandlers: function() {
@@ -120,81 +131,81 @@ var app = {
 		// 	value === 0 ? app.socket.emit('lampStatus', 'off') : app.socket.emit('lampStatus', 'on');
 		// });
 
+		// on saving a preset, open a modal window with text input box
+		$('.savePreset').on('click', function() {
+			var currMode = $(this).data('mode'),
+				newPresets = presets;
+
+			$('#modalsavePreset').show();
+			$('input[name=savePresetName]').val('');
+
+			// submit handler
+			$('form#fSavePreset').submit(function(e) {
+				e.preventDefault();
+				var pName = $('input[name=savePresetName]').val();
+				if (pName !== "") {
+					$('#modalsavePreset').fadeOut();
+					var value = "";
+					switch (currMode) {
+						case 1:
+							value = $('#s-1-bright').val();
+							break;
+						case 2:
+						case 3:
+							value = app.savePresets(currMode);
+							break;
+
+					}
+					// add new preset value to current preset object
+					newPresets[currMode].entries[pName] = value;
+					app.socket.emit('savePresets', newPresets);
+					presets = newPresets;
+					// re-create dropdown preset menu
+					$('#presetDropdown').html('');
+					app.buildPresetDropdown();
+				}
+			});
+		});
+
 		// dropdown 
 		$('.lampMode').on('change', function() {
 			var lampMode = parseInt($(this).val());
 			console.log('#### changing lamp mode to: ' + lampMode);
-			app.socket.emit('lampMode', lampMode);
+			app.inits.dropDownStatus === true ?
+				app.inits.dropDownStatus = false : app.socket.emit('lampMode', lampMode);
 			$('.modes').hide();
 			$('#paramMode' + lampMode).show();
 		});
 
-		$('#s-g-bright, #s-2-brightRed, #s-2-brightGreen, #s-2-brightBlue, #s-2-brightWhite, #s-4-bright').slider({
-			min: 0,
-			max: 165,
-			value: 100
-		});
-
-		$('#s-1-bright').slider({
-			min: 0,
-			max: 165,
-			value: 100
-		});
-		$('#s-3-seed,#s-3-generation').slider({
-			min: 0,
-			max: 255,
-			value: 100
-		});
-
-		$('#s-4-speed').slider({
-			min: 0,
-			max: 1000,
-			value: 500
-		});
-
-		$("#s-2-brightRed, #s-2-brightGreen, #s-2-brightBlue, #s-g-bright, #s-2-brightWhite, #s-3-generation, #s-4-bright, #s-3-seed, #s-4-speed").slider("enable");
-		$("#s-1-bright").slider("enable");
+		/* SLIDER MADNESS INITS AND SLIDE CALLBACKS */
+		$('#s-g-bright, #s-1-bright, #s-2-brightRed, #s-2-brightGreen, #s-2-brightBlue, #s-2-brightWhite, #s-4-bright').slider(app.inits.slider165);
+		$('#s-3-seed,#s-3-generation').slider(app.inits.slider255);
+		$('#s-4-speed').slider(app.inits.sliderMax1000);;
 
 		$("#s-g-bright").on("slidestop", function(event, ui) {
 			var value = parseInt($(this).val());
-			console.log($(this));
-			console.log('#### slider brightness: ' + value);
 			app.socket.emit('pBrightness', value);
 		});
 
 		$("#s-1-bright").on("slidestop", function(event, ui) {
-			console.log($(this).val());
 			var value = parseInt($(this).val());
 			app.socket.emit('p1', value);
 		});
 
 		$("#s-2-brightRed, #s-2-brightBlue, #s-2-brightGreen, #s-2-brightWhite").on("slidestop", function(event, ui) {
-			var params = [];
-			$('.slide2').each(function() {
-				var value = parseInt($(this).val());
-				isNaN(value) ?
-					params.push(0) : params.push(value);
-			});
+			var params = app.savePresets('2');
 			app.socket.emit('p2', params);
 		});
 
 		$("#s-3-seed, #s-3-generation").on("slidestop", function(event, ui) {
-			var params = [];
-			$('.slide3').each(function() {
-				var value = parseInt($(this).val());
-				isNaN(value) ?
-					params.push(0) : params.push(value);
-			});
+			var params = app.savePresets('3');
 			app.socket.emit('p3', params);
 		});
 		$("#s-4-speed").on("slidestop", function(event, ui) {
 			var value = parseInt($(this).val());
-			app.socket.emit('p4Speed', value);
+			app.socket.emit('p4', value);
 		});
-		$("#s-4-bright").on("slidestop", function(event, ui) {
-			var value = parseInt($(this).val());
-			app.socket.emit('p4Brightness', value);
-		});
+
 	},
 
 	/*
@@ -202,15 +213,7 @@ var app = {
 	 */
 	onDeviceReady: function() {
 		//app.socket = io.connect('http://127.0.0.1:3000');
-
-
 		app.socket = io.connect('http://192.168.66.1:3003');
-		// app.socket.on('connect', function() {
-		// 	app.socket.on('text', function(text) {
-		// 		//alert(text);
-		// 	});
-
-		// });
 	}
 };
 
