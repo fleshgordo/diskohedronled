@@ -1,0 +1,1 @@
+gpx.exe -g -p -m r1d FILE.gcode FILE.x3g
