@@ -4,7 +4,9 @@
 .DS_Store
 # Ignore list for Eagle, a PCB layout tool
 
+# Ignore node_modules
 
+node_modules/
 # Backup files
 *.s#?
 *.b#?

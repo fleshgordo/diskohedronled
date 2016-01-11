@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+        <title>Diskohedron</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="h25 green">
+                <!-- <fieldset>
+                    <div data-role="fieldcontain">
+                        <label for="select-based-flipswitch">Main switch:</label>
+                        <select id="select-based-flipswitch" data-role="flipswitch">
+                            <option value="0" name="lampStatus">off</option>
+                            <option value="1" name="lampStatus">on</option>
+                        </select>
+                    </div>
+                </fieldset> -->
+                <label for="s-g-bright">Brightness:</label>
+                <div id="s-g-bright" class="slideee" value="80" min="0" max="100"></div>
+                <label for="presetDropdown">Presets:</label>
+                <select name="presets" id="presetDropdown" class="preset">
+                </select>
+            </div>
+            <div class="h25 grey">
+                <select name="lampMode" class="lampMode">
+                    <option value="0" name="off">off</option>
+                    <option value="1" name="wait">wait</option>
+                    <option value="2" name="colournoise">colournoise</option>
+                    <option value="3" name="GOL">Game of Life</option>
+                    <option value="4" name="Boot">Boot</option>
+                    <option value="5" name="RGBW">RGBW</option>
+                    <option value="101" name="sinusRed">sinusRed</option>
+                    <option value="102" name="sinusGreen">sinusGreen</option>
+                    <option value="103" name="sinusBlue">sinusBlue</option>
+                    <option value="104" name="sinusWhite">sinusWhite</option>
+                    <option value="105" name="sinuasAll">sinuasAll</option>
+                </select>
+            </div>
+            <div class="h25 blue">
+                <div id="paramMode0" class="modes">
+                    off
+                </div>
+                <div id="paramMode1" class="modes">
+                    <label for="s-1-bright">Brightness:</label>
+                    <div id="s-1-bright" class="slideee" value="80" min="0" max="165"></div>
+                    <br /><br /><button class="savePreset" data-mode="1">save preset</button>
+                </div>
+                <div id="paramMode2" class="modes">
+                    <label for="s-2-bright">Brightness Red:</label>
+                    <div id="s-2-brightRed" class="slide2" value="0" min="0" max="165"></div>
+                    <label for="s-2-brightGreen">Brightness Green:</label>
+                    <div id="s-2-brightGreen" class="slide2" value="0" min="0" max="165"></div>
+                    <label for="s-2-brightBlue">Brightness Blue:</label>
+                    <div id="s-2-brightBlue" class="slide2" value="0" min="0" max="165"></div>
+                    <label for="s-2-brightWhite">Brightness White:</label>
+                    <div id="s-2-brightWhite" class="slide2" value="0" min="0" max="165"></div>
+                    <br /><br /><button class="savePreset" data-mode="2">save preset</button>
+                </div>
+                <div id="paramMode3" class="modes">
+                    <label for="s-3-generation">Generation time:</label>
+                    <div id="s-3-generation" class="slide3" value="80" min="0" max="255"></div>
+                    <label for="s-3-seed">Seed time:</label>
+                    <div id="s-3-seed" class="slide3" value="80" min="0" max="255"></div>
+                    <br /><br /><button class="savePreset" data-mode="3">save preset</button>
+                </div>
+                <div id="paramMode4" class="modes">
+                    <label for="s-4-bright">Brightness:</label>
+                    <div id="s-4-bright" class="slide4" value="100" min="0" max="165"></div>
+                    <label for="s-4-speed">Speed:</label>
+                    <div id="s-4-speed" class="slide4" value="0" min="-255" max="255"></div>
+                    <br /><br /><button class="savePreset" data-mode="4">save preset</button>
+                </div>
+                <div id="paramMode5" class="modes">
+                    <label for="s-5-bright">Brightness Red:</label>
+                    <div id="s-5-brightRed" class="slide5" value="0" min="0" max="165"></div>
+                    <label for="s-5-brightGreen">Brightness Green:</label>
+                    <div id="s-5-brightGreen" class="slide5" value="0" min="0" max="165"></div>
+                    <label for="s-5-brightBlue">Brightness Blue:</label>
+                    <div id="s-5-brightBlue" class="slide5" value="0" min="0" max="165"></div>
+                    <label for="s-5-brightWhite">Brightness White:</label>
+                    <div id="s-5-brightWhite" class="slide5" value="0" min="0" max="165"></div>
+                    <br /><br /><button class="savePreset" data-mode="2">save preset</button>
+                </div>
+                <div id="paramMode101" class="modes">
+                    <label for="s-101-bright">Brightness:</label>
+                    <div id="s-101-brightness" class="slide101" value="0" min="0" max="165"></div>
+                    <label for="s-101-speed">Brightness:</label>
+                    <div id="s-101-speed" class="slide101" value="0" min="0" max="165"></div>
+                    <label for="s-101-distance">Brightness:</label>
+                    <div id="s-101-distance" class="slide101" value="0" min="0" max="165"></div>
+                </div>
+                <div id="paramMode102" class="modes">
+                    <label for="s-101-bright">Brightness:</label>
+                    <div id="s-101-brightness" class="slide101" value="0" min="0" max="165"></div>
+                    <label for="s-101-speed">Brightness:</label>
+                    <div id="s-101-speed" class="slide101" value="0" min="0" max="165"></div>
+                    <label for="s-101-distance">Brightness:</label>
+                    <div id="s-101-distance" class="slide101" value="0" min="0" max="165"></div>
+                </div>
+                <div id="paramMode103" class="modes">--</div>
+                <div id="paramMode104" class="modes">--</div>
+                <div id="paramMode105" class="modes">--</div>
+
+            </div>
+        </div>
+        <div id="modalsavePreset">
+            SAVE PRESET
+            <form name="formsavePreset" id="fSavePreset">
+                <input type="text" value="" name="savePresetName" class="input" />
+                <input type="submit" value="submit" />
+            </form>
+        </div>
+        <script src="./js/presets.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="js/socket.io-1.0.3.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
