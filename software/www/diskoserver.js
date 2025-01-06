@@ -15,9 +15,10 @@ var server = require('http').createServer(),
  * Initializing serial port
  */
 
-//var serialPort = new SerialPort("/dev/ttyACM0", {
-var serialPort = new SerialPort("/dev/ttyUSB0", {
-	baudrate: 115200,
+var serialPort = new SerialPort({
+//var serialPort = new SerialPort("/dev/ttyUSB0", {
+	path: "/dev/ttyACM0",
+	baudRate: 115200,
 	dataBits: 8,
 	parity: 'none',
 	stopBits: 1,
