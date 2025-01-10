@@ -15,23 +15,22 @@ var server = require('http').createServer(),
  * Initializing serial port
  */
 
+
 var serialPort = new SerialPort({
-//var serialPort = new SerialPort("/dev/ttyUSB0", {
-	path: "/dev/ttyACM0",
-	baudRate: 115200,
+	path: "/dev/ttyUSB0",
+	baudRate: 9600,
 	dataBits: 8,
 	parity: 'none',
 	stopBits: 1,
 	flowControl: false
+},false);
+
+serialPort.on('open', () => {
+    console.log('Serial port opened successfully.');
 });
 
-serialPort.open(function(error) {
-	if (error) {
-		console.log(logN + 'failed to open: ' + error);
-	} else {
-		console.log(logN + 'opened serialport successfully.');
-		//serialPort.write('A');
-	}
+serialPort.on('error', (error) => {
+    console.log('Error opening serial port: ' + error.message);
 });
 
 /*
@@ -110,4 +109,6 @@ io.sockets.on('connection', function(socket) {
 
 });
 
-server.listen(3003);
+server.listen(3003, '192.168.178.115', () => {
+    console.log('Server is running on http://0.0.0.0:3003');
+});
