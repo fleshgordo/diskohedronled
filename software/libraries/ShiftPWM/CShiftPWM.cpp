@@ -33,6 +33,8 @@ CShiftPWM::CShiftPWM(int timerInUse, bool noSPI, int latchPin, int dataPin, int 
 	m_counter = 0;
 	m_pinGrouping = 1; // Default = RGBRGBRGB... PinGrouping = 3 means: RRRGGGBBBRRRGGGBBB...
 
+	
+
 	unsigned char * m_PWMValues=0;
 }
 
@@ -113,26 +115,59 @@ void CShiftPWM::SetRGB(int led, unsigned char r,unsigned char g,unsigned char b,
 	int skip = 2*m_pinGrouping*(led/m_pinGrouping); // is not equal to 2*led. Division is rounded down first.
 	if(IsValidPin(led+skip+offset+2*m_pinGrouping) ){
 		m_PWMValues[led+skip+offset]					=( (unsigned int) r * m_maxBrightness)>>8;
-		m_PWMValues[led+skip+offset+m_pinGrouping]		=( (unsigned int) g * m_maxBrightness)>>8;
-		m_PWMValues[led+skip+offset+2*m_pinGrouping]	=( (unsigned int) b * m_maxBrightness)>>8;
+		m_PWMValues[led+skip+offset+m_pinGrouping]		=( (unsigned int) b * m_maxBrightness)>>8;
+		m_PWMValues[led+skip+offset+2*m_pinGrouping]	=( (unsigned int) g * m_maxBrightness)>>8;
 	}
 }
-void CShiftPWM::SetRGBW(int led, unsigned char r,unsigned char g,unsigned char b, unsigned char w){
-	int skip = 3*m_pinGrouping*(led/m_pinGrouping); // is not equal to 2*led. Division is rounded down first.
-	if(IsValidPin(led+skip+3*m_pinGrouping) ){
-		m_PWMValues[led+skip]					=( (unsigned int) r * m_maxBrightness)>>8;
-		m_PWMValues[led+skip+m_pinGrouping]		=( (unsigned int) g * m_maxBrightness)>>8;
-		m_PWMValues[led+skip+2*m_pinGrouping]	=( (unsigned int) b * m_maxBrightness)>>8;
-		m_PWMValues[led+skip+3*m_pinGrouping]	=( (unsigned int) w * m_maxBrightness)>>8;
+
+void CShiftPWM::SetRGBWsimple(int led, unsigned char r,unsigned char g,unsigned char b, unsigned char w){
+	//int lso=led*4;
+	int lso=led<<2;
+	m_PWMValues[lso]	= r;
+	m_PWMValues[lso+1]	= b;
+	m_PWMValues[lso+2]	= g;
+	m_PWMValues[lso+3]	= w;
+}
+
+void CShiftPWM::SetRsimple(int led, unsigned char r){
+	int lso=led<<2;
+	m_PWMValues[lso]	= r;
+}
+void CShiftPWM::SetGsimple(int led, unsigned char g){
+	int lso=led<<2;
+	m_PWMValues[lso+2]	= g;
+}
+void CShiftPWM::SetBsimple(int led, unsigned char b){
+	int lso=led<<2;
+	m_PWMValues[lso+1]	= b;
+}
+void CShiftPWM::SetWsimple(int led, unsigned char w){
+	int lso=led<<2;
+	m_PWMValues[lso+3]	= w;
+}
+
+
+
+
+void CShiftPWM::SetRGBW(int led, unsigned char r,unsigned char g,unsigned char b, unsigned char w, int offset){
+	int threempg = 3*m_pinGrouping;
+	int skip = threempg*(led/m_pinGrouping); // is not equal to 3*led. Division is rounded down first.
+	int lso=led+skip+offset;
+	if(IsValidPin(lso+threempg) ){
+		m_PWMValues[lso]					=( (unsigned int) r * m_maxBrightness)>>8;
+		m_PWMValues[lso+m_pinGrouping]		=( (unsigned int) b * m_maxBrightness)>>8;
+		m_PWMValues[lso+2*m_pinGrouping]	=( (unsigned int) g * m_maxBrightness)>>8;
+		m_PWMValues[lso+threempg]	=( (unsigned int) w * m_maxBrightness)>>8;
 	}
 }
+
 
 void CShiftPWM::SetAllRGB(unsigned char r,unsigned char g,unsigned char b){
 	for(int k=0 ; (k+3*m_pinGrouping-1) < m_amountOfOutputs; k+=3*m_pinGrouping){
 		for(int l=0; l<m_pinGrouping;l++){
 			m_PWMValues[k+l]				=	( (unsigned int) r * m_maxBrightness)>>8;
-			m_PWMValues[k+l+m_pinGrouping]	=	( (unsigned int) g * m_maxBrightness)>>8;
-			m_PWMValues[k+l+m_pinGrouping*2]	=	( (unsigned int) b * m_maxBrightness)>>8;
+			m_PWMValues[k+l+m_pinGrouping]	=	( (unsigned int) b * m_maxBrightness)>>8;
+			m_PWMValues[k+l+m_pinGrouping*2]	=	( (unsigned int) g * m_maxBrightness)>>8;
 		}
 	}
 }
@@ -142,8 +177,8 @@ void CShiftPWM::SetAllRGBW(unsigned char r,unsigned char g,unsigned char b,unsig
 	for(int k=0 ; (k+4*m_pinGrouping-1) < m_amountOfOutputs; k+=4*m_pinGrouping){
 		for(int l=0; l<m_pinGrouping;l++){
 			m_PWMValues[k+l]				=	( (unsigned int) r * m_maxBrightness)>>8;
-			m_PWMValues[k+l+m_pinGrouping]	=	( (unsigned int) g * m_maxBrightness)>>8;
-			m_PWMValues[k+l+m_pinGrouping*2]	=	( (unsigned int) b * m_maxBrightness)>>8;
+			m_PWMValues[k+l+m_pinGrouping]	=	( (unsigned int) b * m_maxBrightness)>>8;
+			m_PWMValues[k+l+m_pinGrouping*2]	=	( (unsigned int) g * m_maxBrightness)>>8;
 			m_PWMValues[k+l+m_pinGrouping*3]	=	( (unsigned int) w * m_maxBrightness)>>8;
 		}
 	}
