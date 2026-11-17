@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<meta name="theme-color" content="#121212">
+	<title>Diskohedron</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Diskohedron</h1>
+		<span id="status" class="status offline">connecting…</span>
+	</header>
+
+	<main>
+		<section class="card">
+			<div id="global"></div>
+		</section>
+
+		<section class="card">
+			<h2>Mode</h2>
+			<div id="modes" class="modes"></div>
+		</section>
+
+		<section class="card" id="paramsCard">
+			<h2 id="paramsTitle">Settings</h2>
+			<div id="params"></div>
+		</section>
+
+		<section class="card" id="manualCard" hidden>
+			<div class="row">
+				<h2>Boards</h2>
+				<span id="manualSel" class="value"></span>
+			</div>
+			<div id="tiles" class="tiles"></div>
+			<div class="row actions">
+				<button id="manualAll" class="link" type="button">select all</button>
+				<button id="manualNone" class="link" type="button">select none</button>
+				<button id="manualOff" class="link" type="button">selected off</button>
+			</div>
+			<div id="manualSliders"></div>
+		</section>
+
+		<section class="card">
+			<div class="row">
+				<h2>Presets</h2>
+				<button id="editPresets" class="link" type="button">edit</button>
+			</div>
+			<div id="presets" class="presets"></div>
+			<form id="savePreset" class="save">
+				<input id="presetName" type="text" maxlength="32" placeholder="name for current settings" autocomplete="off">
+				<button type="submit">Save</button>
+			</form>
+		</section>
+
+		<section class="card">
+			<details id="calib">
+				<summary class="row">
+					<h2>Calibrate</h2>
+					<span id="calibState" class="value"></span>
+				</summary>
+				<p class="hint">Measure every LED with a luxmeter: dark room, meter always at the same
+					spot and distance on the face. Tap a board: it lights red, green, blue and white in turn,
+					one colour at a time at full power. Type each reading and press Enter; after white
+					it moves on to the next board.</p>
+				<div id="calibChans" class="chans"></div>
+				<div id="calibTiles" class="tiles"></div>
+				<form id="calibForm" class="save">
+					<input id="calibLux" type="text" inputmode="decimal" placeholder="tap a board first" autocomplete="off" disabled>
+					<button type="submit">Save</button>
+				</form>
+				<p id="calibInfo" class="hint"></p>
+				<div class="toggles">
+					<label class="toggle"><input id="calibBoards" type="checkbox"><span>Even out boards</span></label>
+					<label class="toggle"><input id="calibColours" type="checkbox"><span>Balance colours</span></label>
+				</div>
+				<div class="row actions">
+					<button id="calibStop" class="link" type="button">back to the mode</button>
+					<button id="calibReset" class="link" type="button">clear this colour</button>
+				</div>
+			</details>
+		</section>
+
+		<section class="card">
+			<details id="wifi">
+				<summary class="row">
+					<h2>Home WiFi</h2>
+					<span id="wifiState" class="value"></span>
+				</summary>
+				<p class="hint">Let the lamp join your WiFi, then open it from any device at home.
+					Its own hotspot stays on as a fallback.</p>
+				<p id="wifiInfo" class="hint"></p>
+				<form id="wifiForm" class="save wifi">
+					<input id="wifiSsid" list="wifiNets" type="text" maxlength="32" placeholder="network name"
+						autocomplete="off" autocapitalize="off" spellcheck="false">
+					<datalist id="wifiNets"></datalist>
+					<input id="wifiPass" type="password" maxlength="63" placeholder="password" autocomplete="off">
+					<button type="submit">Connect</button>
+				</form>
+				<div class="row actions">
+					<button id="wifiScan" class="link" type="button">scan for networks</button>
+					<button id="wifiForget" class="link" type="button">forget network</button>
+				</div>
+			</details>
+		</section>
+		<section class="card">
+			<details id="firmware">
+				<summary class="row">
+					<h2>Firmware</h2>
+					<span id="fwVersion" class="value"></span>
+				</summary>
+				<p id="fwInfo" class="hint"></p>
+				<p class="hint">Install a new firmware file (<code>diskohedron.ino.bin</code>). The lamp
+					goes dark while it is written, then restarts, and this page reloads by itself.
+					If anything goes wrong, the lamp keeps the current firmware.</p>
+				<form id="fwForm" class="save wifi">
+					<input id="fwFile" type="file" accept=".bin">
+					<input id="fwPass" type="password" placeholder="update password" autocomplete="current-password">
+					<button type="submit">Install</button>
+				</form>
+				<progress id="fwProgress" max="1" value="0" hidden></progress>
+				<p id="fwStatus" class="hint"></p>
+			</details>
+		</section>
+	</main>
+
+	<script src="app.js"></script>
+</body>
+</html>

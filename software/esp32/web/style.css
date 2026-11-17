@@ -1,0 +1,425 @@
+:root {
+	--bg: #121212;
+	--card: #1d1d1f;
+	--line: #2c2c30;
+	--text: #ececec;
+	--muted: #8d8d93;
+	--accent: #ffb347;
+	--danger: #ff5a5a;
+	color-scheme: dark;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font: 16px/1.4 system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+	padding: env(safe-area-inset-top) 16px calc(24px + env(safe-area-inset-bottom));
+}
+
+header,
+main {
+	max-width: 520px;
+	margin: 0 auto;
+}
+
+header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	padding: 20px 4px 12px;
+}
+
+h1 {
+	margin: 0;
+	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+h2 {
+	margin: 0 0 12px;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+
+.status {
+	font-size: 13px;
+	color: #6fd27f;
+}
+
+.status::before {
+	content: '';
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-right: 6px;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+.status.offline {
+	color: var(--danger);
+}
+
+.card {
+	background: var(--card);
+	border-radius: 14px;
+	padding: 16px;
+	margin-bottom: 12px;
+}
+
+.card[hidden] {
+	display: none;
+}
+
+.row {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- modes */
+.modes {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	gap: 8px;
+}
+
+.modes button {
+	padding: 14px 10px;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: transparent;
+}
+
+.modes button.active {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: #1a1a1a;
+	font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- sliders */
+.slider {
+	display: block;
+	margin-bottom: 16px;
+}
+
+.slider:last-child {
+	margin-bottom: 0;
+}
+
+.value {
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+
+input[type='range'] {
+	--tint: var(--accent);
+	width: 100%;
+	height: 36px;
+	margin: 4px 0 0;
+	background: transparent;
+	accent-color: var(--tint);
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+	height: 6px;
+	border-radius: 3px;
+	background: var(--line);
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 26px;
+	height: 26px;
+	margin-top: -10px;
+	border-radius: 50%;
+	background: var(--tint);
+	border: 3px solid var(--card);
+}
+
+input[type='range']::-moz-range-track {
+	height: 6px;
+	border-radius: 3px;
+	background: var(--line);
+}
+
+input[type='range']::-moz-range-thumb {
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: var(--tint);
+	border: 3px solid var(--card);
+}
+
+/* ---------------------------------------------------------------- checkboxes */
+.toggles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 20px;
+	margin-bottom: 16px;
+}
+
+.toggles:last-child {
+	margin-bottom: 0;
+}
+
+.toggle {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 36px;
+	cursor: pointer;
+}
+
+.toggle input {
+	--tint: var(--accent);
+	width: 22px;
+	height: 22px;
+	margin: 0;
+	accent-color: var(--tint);
+}
+
+/* ---------------------------------------------------------------- manual */
+.tiles {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 6px;
+	margin: 12px 0 4px;
+}
+
+.tiles button {
+	aspect-ratio: 1;
+	border: 2px solid transparent;
+	border-radius: 10px;
+	color: #1a1a1a;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.tiles button.dark {
+	color: var(--text);
+}
+
+.tiles button.selected {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 2px var(--accent);
+}
+
+#manualSliders {
+	margin-top: 12px;
+}
+
+.slider.disabled {
+	opacity: 0.35;
+	pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- calibration */
+.chans {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 8px;
+	margin: 12px 0 0;
+}
+
+.chans button {
+	padding: 10px 4px;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: transparent;
+}
+
+.chans button.active {
+	background: var(--tint);
+	border-color: var(--tint);
+	color: #1a1a1a;
+	font-weight: 600;
+}
+
+#calibTiles button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: var(--line);
+	color: var(--muted);
+}
+
+#calibTiles button.done {
+	color: var(--text);
+	background: #34343a;
+}
+
+#calibTiles button.outlier small {
+	color: var(--danger);
+	text-decoration: line-through;
+}
+
+#calibTiles small {
+	font-size: 11px;
+	font-weight: 400;
+}
+
+#calibForm {
+	margin-bottom: 4px;
+}
+
+/* ---------------------------------------------------------------- firmware */
+#fwFile {
+	padding: 10px;
+	color: var(--muted);
+}
+
+#fwProgress {
+	width: 100%;
+	height: 8px;
+	margin-top: 12px;
+	accent-color: var(--accent);
+}
+
+code {
+	font-size: 0.9em;
+}
+
+/* ---------------------------------------------------------------- presets */
+.presets {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	color: var(--muted);
+}
+
+.chip {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 8px 12px;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: transparent;
+	color: var(--text);
+	text-align: left;
+}
+
+.chip small {
+	color: var(--muted);
+	font-size: 11px;
+}
+
+.chip.same-mode {
+	border-color: var(--accent);
+}
+
+.chip.delete {
+	border-color: var(--danger);
+	color: var(--danger);
+}
+
+.link {
+	border: 0;
+	background: none;
+	color: var(--accent);
+	font-size: 14px;
+	padding: 0;
+}
+
+.save {
+	display: flex;
+	gap: 8px;
+	margin-top: 14px;
+}
+
+.save input {
+	flex: 1;
+	min-width: 0;
+	padding: 10px 12px;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: var(--bg);
+	color: var(--text);
+	font: inherit;
+}
+
+.save button {
+	padding: 10px 16px;
+	border: 0;
+	border-radius: 10px;
+	background: var(--accent);
+	color: #1a1a1a;
+	font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- wifi */
+summary {
+	list-style: none;
+	cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+	display: none;
+}
+
+summary h2 {
+	margin: 0;
+}
+
+summary h2::after {
+	content: ' ▸';
+}
+
+details[open] summary h2::after {
+	content: ' ▾';
+}
+
+.hint {
+	margin: 12px 0 0;
+	color: var(--muted);
+	font-size: 14px;
+	overflow-wrap: anywhere;
+}
+
+.hint a {
+	color: var(--accent);
+}
+
+.hint[hidden],
+.link[hidden] {
+	display: none;
+}
+
+.wifi {
+	flex-wrap: wrap;
+}
+
+.wifi input {
+	flex: 1 1 100%;
+}
+
+.wifi button {
+	flex: 1 1 100%;
+}
+
+.actions {
+	margin-top: 12px;
+}

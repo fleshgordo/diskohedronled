@@ -15,22 +15,22 @@ var server = require('http').createServer(),
  * Initializing serial port
  */
 
-
-var serialPort = new SerialPort({
-	path: "/dev/ttyUSB0",
-	baudRate: 9600,
+//var serialPort = new SerialPort("/dev/ttyACM0", {
+var serialPort = new SerialPort("/dev/ttyUSB0", {
+	baudrate: 115200,
 	dataBits: 8,
 	parity: 'none',
 	stopBits: 1,
 	flowControl: false
-},false);
-
-serialPort.on('open', () => {
-    console.log('Serial port opened successfully.');
 });
 
-serialPort.on('error', (error) => {
-    console.log('Error opening serial port: ' + error.message);
+serialPort.open(function(error) {
+	if (error) {
+		console.log(logN + 'failed to open: ' + error);
+	} else {
+		console.log(logN + 'opened serialport successfully.');
+		//serialPort.write('A');
+	}
 });
 
 /*
@@ -107,8 +107,38 @@ io.sockets.on('connection', function(socket) {
 		}
 	});
 
+	/*
+	 * CHANGING PARAMS
+	 */
+	socket.on('r', function(_val) {
+		var isOpen = serialPort.isOpen();
+		if (isOpen === true) {
+			serialPort.write("r," + _val + ";");
+			console.log(logS + 'changing parameter red: ' + _val);
+		}
+	});
+	socket.on('g', function(_val) {
+		var isOpen = serialPort.isOpen();
+		if (isOpen === true) {
+			serialPort.write("g," + _val + ";");
+			console.log(logS + 'changing parameter blue: ' + _val);
+		}
+	});
+	socket.on('b', function(_val) {
+		var isOpen = serialPort.isOpen();
+		if (isOpen === true) {
+			serialPort.write("b," + _val + ";");
+			console.log(logS + 'changing parameter green: ' + _val);
+		}
+	});
+	socket.on('w', function(_val) {
+		var isOpen = serialPort.isOpen();
+		if (isOpen === true) {
+			serialPort.write("w," + _val + ";");
+			console.log(logS + 'changing parameter white: ' + _val);
+		}
+	});
+
 });
 
-server.listen(3003, '192.168.178.115', () => {
-    console.log('Server is running on http://0.0.0.0:3003');
-});
+server.listen(3003);
