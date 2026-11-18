@@ -54,11 +54,15 @@ usb)
 	;;
 ota)
 	host="${target:-diskoledron.local}"
-	espota="$(ls -d "$HOME"/Library/Arduino15/packages/esp32/hardware/esp32/*/tools/espota.py | sort -V | tail -1)"
 	echo "== upload via WiFi ($host)"
 	echo "   (the Mac must be on the same network as the lamp - your home WiFi if the lamp joined it)"
-	python3 "$espota" -r -i "$host" -p 3232 --auth="$OTA_PASS" -f "$BUILD/diskohedron.ino.bin" 2>&1 |
-		tr '\r' '\n' | grep -vE '^Uploading: .* [0-9]{1,2}% $'
+	# the lamp's own /update page (same as "Firmware" in the web UI); more reliable than espota.
+	# Lamps older than 1.1.0 don't have it: then use the Arduino IDE network port or USB.
+	answer="$(curl -sS --max-time 180 -H "X-Password: $OTA_PASS" \
+		-F "firmware=@$BUILD/diskohedron.ino.bin" "http://$host/update")"
+	echo "   lamp: $answer"
+	[[ "$answer" == *'"ok":true'* ]] || exit 1
+	echo "   restarting - wait ~10 s"
 	;;
 *)
 	sed -n '2,9p' "$0"

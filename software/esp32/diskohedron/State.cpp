@@ -1,4 +1,7 @@
 #include "State.h"
+#include "LedChain.h"
+
+extern LedChain leds;  // flash writes pause its interrupt: see holdForFlash()
 #include <ArduinoJson.h>
 #include <LittleFS.h>
 #include <algorithm>
@@ -264,6 +267,7 @@ void State::saveState() {
 	doc["mode"] = (int)m_mode;
 	for (int i = 0; i < P_COUNT; i++) doc["values"][PARAMS[i].key] = m_values[i];
 	doc["manual"] = manualHex();
+	leds.holdForFlash(80);
 	File f = LittleFS.open("/state.json", "w");
 	if (!f) return;
 	serializeJson(doc, f);
@@ -295,6 +299,7 @@ void State::savePresets() {
 		for (auto &kv : p.values) vals[PARAMS[kv.first].key] = kv.second;
 		if (p.tiles.length()) o["tiles"] = p.tiles;
 	}
+	leds.holdForFlash(180);
 	File f = LittleFS.open("/presets.json", "w");
 	if (!f) return;
 	serializeJson(doc, f);
@@ -454,6 +459,7 @@ void State::saveCalib() {
 		JsonArray l = lux.add<JsonArray>();
 		for (float v : t) l.add(v);
 	}
+	leds.holdForFlash(100);
 	File f = LittleFS.open("/calib.json", "w");
 	if (!f) return;
 	serializeJson(doc, f);

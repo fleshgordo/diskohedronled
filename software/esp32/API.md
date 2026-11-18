@@ -19,6 +19,7 @@ No password: anyone on the same network can control the lamp.
 | `GET /api/state?on=1&brightness=40…` | the same with URL parameters, for tools that can only call a URL |
 | `GET /api/schema` | all modes and parameters with ranges, plus `version`, `built`, `chip`, `appUsed` (% of firmware space) |
 | `GET /api/presets` | preset names |
+| `GET /api/debug` | diagnostics: late LED frames (`led.late`, `led.recent` = [uptime ms, dark µs]), WiFi signal, free memory |
 
 ## State
 

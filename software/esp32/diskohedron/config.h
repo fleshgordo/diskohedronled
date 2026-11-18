@@ -1,7 +1,7 @@
 #pragma once
 
 // shown in the web page (Firmware section) and in /api/schema; raise it for every release
-#define FIRMWARE_VERSION "1.1.0"
+#define FIRMWARE_VERSION "1.2.3"
 
 // ---------------------------------------------------------------- LED chain
 // ESP32 -> JP1 on the FIRST board of the chain

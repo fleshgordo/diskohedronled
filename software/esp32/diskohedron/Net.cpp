@@ -3,6 +3,9 @@
 #include "web_assets.h"
 #include "StreamBuffer.h"
 #include "ArtNet.h"
+#include "LedChain.h"
+
+extern LedChain leds;
 
 #include <ArduinoJson.h>
 #include <LittleFS.h>
@@ -60,6 +63,7 @@ static void saveWifi() {
 	JsonDocument doc;
 	doc["ssid"] = staSsid;
 	doc["pass"] = staPass;
+	leds.holdForFlash(100);
 	File f = LittleFS.open("/wifi.json", "w");
 	if (!f) return;
 	serializeJson(doc, f);
@@ -394,6 +398,13 @@ void Net::begin() {
 	});
 	server.on("/api/schema", HTTP_GET, [](AsyncWebServerRequest *r) { sendJson(r, 200, cached(cacheSchema)); });
 	server.on("/update", HTTP_POST, onUpdateDone, onUpdateData);
+	// diagnostics: late LED frames ([uptime ms, dark µs] each), WiFi, memory
+	server.on("/api/debug", HTTP_GET, [](AsyncWebServerRequest *r) {
+		String s = "{\"uptimeMs\":" + String(millis()) + ",\"led\":" + leds.statsJson() +
+		           ",\"rssi\":" + String(WiFi.RSSI()) + ",\"channel\":" + String(WiFi.channel()) +
+		           ",\"freeHeap\":" + String(ESP.getFreeHeap()) + "}";
+		sendJson(r, 200, s);
+	});
 	server.on("/api/presets", HTTP_GET, [](AsyncWebServerRequest *r) { sendJson(r, 200, cached(cachePresets)); });
 
 	// --- web
@@ -415,6 +426,9 @@ void Net::begin() {
 	// --- firmware updates over WiFi (arduino-cli upload -p diskoledron.local ...)
 	ArduinoOTA.setHostname(HOSTNAME);
 	ArduinoOTA.setPassword(OTA_PASSWORD);
+	// LEDs go dark while an update is written
+	ArduinoOTA.onStart([] { g_firmwareUpdating = true; });
+	ArduinoOTA.onError([](ota_error_t) { g_firmwareUpdating = false; });
 	ArduinoOTA.begin();
 }
 
